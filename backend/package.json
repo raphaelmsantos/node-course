@@ -1,0 +1,23 @@
+{
+  "name": "node-course",
+  "version": "1.0.0",
+  "description": "Tutorial for node js course",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaelmsantos/node-course.git"
+  },
+  "author": "Raphael Santos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raphaelmsantos/node-course/issues"
+  },
+  "homepage": "https://github.com/raphaelmsantos/node-course#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
