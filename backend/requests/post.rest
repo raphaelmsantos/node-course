@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:4000/api/v1/posts
+
+### Create a post
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "name": "My first post",
+  "description": "This is the description of my first post.",
+  "age": 30
+}
+
+### Create a post - missing fields (expect 400)
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "name": "Incomplete post"
+}
+
+### Get all posts
+GET {{baseUrl}}/
+
+### Get a post by id (replace :id with a real post id)
+GET {{baseUrl}}/6a3d06851c91f7064951db6e
+
+### Update a post (replace :id with a real post id)
+PUT {{baseUrl}}/6a3d06851c91f7064951db6e
+Content-Type: application/json
+
+{
+  "name": "Updated post name",
+  "description": "Updated description.",
+  "age": 42
+}
+
+### Delete a post (replace :id with a real post id)
+DELETE {{baseUrl}}/6a3d0133e7a83d346ac19778

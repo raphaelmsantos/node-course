@@ -1,0 +1,45 @@
+@baseUrl = http://localhost:4000/api/v1/users
+
+### Register a new user
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "username": "raphael",
+  "email": "email@raphaelsantos.com",
+  "password": "secret123"
+}
+
+### Register - missing fields (expect 400)
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+  "email": "john@example.com"
+}
+
+### Login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "email@raphaelsantos.com",
+  "password": "secret123"
+}
+
+### Login - wrong password (expect 400)
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "wrongpassword"
+}
+
+### Logout
+POST {{baseUrl}}/logout
+Content-Type: application/json
+
+{
+  "email": "email@raphaelsantos.com"
+}
