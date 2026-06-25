@@ -1,6 +1,7 @@
+import { Request, Response } from "express";
 import { User } from "../models/user.model.js";
 
-const registerUser = async (req, res) => {
+const registerUser = async (req: Request, res: Response) => {
     try {
         const { username, email, password } = req.body;
 
@@ -22,8 +23,7 @@ const registerUser = async (req, res) => {
         const user = await User.create({
             username,
             email: email.toLowerCase(),
-            password,
-            loggedIn: false
+            password
         });
 
         res.status(201).json({
@@ -31,15 +31,15 @@ const registerUser = async (req, res) => {
             user: {id: user._id, email: user.email, username: user.username}
         })
 
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
-            message: "Internal server error", 
+            message: "Internal server error",
             error: error.message
         })
     }
 };
 
-const loginUser = async (req, res) => {
+const loginUser = async (req: Request, res: Response) => {
     try {
         // validate fields
         const { email, password } = req.body;
@@ -74,7 +74,7 @@ const loginUser = async (req, res) => {
 };
 
 
-const logoutUser = async (req, res) => {
+const logoutUser = async (req: Request, res: Response) => {
     try {
         const { email } = req.body;
 

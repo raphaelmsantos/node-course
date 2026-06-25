@@ -1,7 +1,12 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 
+export interface IPost extends Document {
+    name: string;
+    description: string;
+    age: number;
+}
 
-const postSchema = new Schema(
+const postSchema = new Schema<IPost>(
 {
     name: {
             type: String,
@@ -19,7 +24,7 @@ const postSchema = new Schema(
     },
     age: {
         type: Number,
-        require: true,
+        required: true,
         min: 1,
         max: 150
     }
@@ -28,4 +33,4 @@ const postSchema = new Schema(
     timestamps: true
 });
 
-export const Post = mongoose.model("Post", postSchema);
+export const Post = mongoose.model<IPost>("Post", postSchema);

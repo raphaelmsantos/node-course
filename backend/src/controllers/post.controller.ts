@@ -1,6 +1,7 @@
+import { Request, Response } from "express";
 import { Post } from "../models/post.model.js";
 
-const createPost = async (req, res) => {
+const createPost = async (req: Request, res: Response) => {
     try {
         const { name, description, age } = req.body;
 
@@ -28,7 +29,7 @@ const createPost = async (req, res) => {
             }
         })
 
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
             message: "Internal server error", 
             error: error.message
@@ -36,21 +37,21 @@ const createPost = async (req, res) => {
     }
 };
 
-const getPosts = async (req, res) => {
+const getPosts = async (req: Request, res: Response) => {
     try {
         const posts = await Post.find();
 
         res.status(200).json({
             posts
         })
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
             message: "Internal server error"
         })
     }
 }
 
-const updatePost = async (req, res) => {
+const updatePost = async (req: Request, res: Response) => {
     try {
         const { id, name, description, age } = req.body;
 
@@ -79,7 +80,7 @@ const updatePost = async (req, res) => {
             }
         });
 
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
             message: "Internal server error", 
             error: error.message
@@ -87,7 +88,7 @@ const updatePost = async (req, res) => {
     }
 };
 
-const getPostById = async (req, res) => {
+const getPostById = async (req: Request, res: Response) => {
     try {
         const post = await Post.findById(req.params.id);
 
@@ -98,7 +99,7 @@ const getPostById = async (req, res) => {
         res.status(200).json({
             post
         })
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
             message: "Internal server error",
             error: error.message
@@ -106,7 +107,7 @@ const getPostById = async (req, res) => {
     }
 };
 
-const deletePost = async (req, res) => {
+const deletePost = async (req: Request, res: Response) => {
     try {
         const post = await Post.findByIdAndDelete(req.params.id);
 
@@ -117,7 +118,7 @@ const deletePost = async (req, res) => {
         res.status(200).json({
             message: "Post deleted successfully!"
         })
-    } catch (error) {
+    } catch (error: any) {
         res.status(500).json({
             message: "Internal server error",
             error: error.message
