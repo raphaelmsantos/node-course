@@ -1,0 +1,108 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.item {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.view,
+.edit {
+  display: flex;
+  gap: 1rem;
+}
+
+.view {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.edit {
+  flex-direction: column;
+}
+
+.age {
+  margin-left: 0.5rem;
+  color: #777;
+  font-size: 0.85rem;
+}
+
+.desc {
+  margin: 0.25rem 0 0;
+  color: #444;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: inherit;
+}
+
+button {
+  padding: 0.4rem 0.8rem;
+  border: 0;
+  border-radius: 4px;
+  background: #1976d2;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.ghost {
+  background: transparent;
+  color: #1976d2;
+  border: 1px solid #1976d2;
+}
+
+button.danger {
+  background: #c0392b;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.msg.err {
+  background: #fdecea;
+  color: #c0392b;
+  padding: 0.6rem;
+  border-radius: 4px;
+}
+
+.hint {
+  color: #c0392b;
+}
+
+.create {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.create h3 {
+  margin: 0;
+}

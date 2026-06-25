@@ -1,0 +1,28 @@
+<section class="card">
+  <h2>Register user</h2>
+
+  <form #f="ngForm" (ngSubmit)="submit()">
+    <label>
+      Username
+      <input name="username" [(ngModel)]="model.username" required minlength="1" maxlength="30" />
+    </label>
+
+    <label>
+      Email
+      <input name="email" type="email" [(ngModel)]="model.email" required email />
+    </label>
+
+    <label>
+      Password
+      <input name="password" type="password" [(ngModel)]="model.password" required minlength="6" />
+    </label>
+
+    <button type="submit" [disabled]="f.invalid || loading()">
+      {{ loading() ? 'Registering…' : 'Register' }}
+    </button>
+  </form>
+
+  @if (message(); as m) {
+    <p class="msg" [class.ok]="m.ok" [class.err]="!m.ok">{{ m.text }}</p>
+  }
+</section>

@@ -1,0 +1,62 @@
+<section>
+  <div class="header">
+    <h2>Posts</h2>
+    <button class="ghost" (click)="load()" [disabled]="loading()">Refresh</button>
+  </div>
+
+  @if (error(); as e) {
+    <p class="msg err">{{ e }}</p>
+  }
+
+  <form class="create" (ngSubmit)="create()">
+    <h3>New post</h3>
+    <input name="newName" [(ngModel)]="newPost.name" placeholder="Name" maxlength="300" />
+    <input name="newDescription" [(ngModel)]="newPost.description" placeholder="Description" maxlength="1000" />
+    <input name="newAge" type="number" [(ngModel)]="newPost.age" placeholder="Age" min="1" max="150" />
+    @if (!isNewValid()) {
+      <small class="hint">Name and description are required, and age must be between 1 and 150.</small>
+    }
+    <div class="actions">
+      <button type="submit" [disabled]="!isNewValid()">Add post</button>
+    </div>
+  </form>
+
+  @if (loading()) {
+    <p>Loading…</p>
+  } @else if (posts().length === 0) {
+    <p>No posts yet.</p>
+  } @else {
+    <ul class="list">
+      @for (post of posts(); track post._id) {
+        <li class="item">
+          @if (editingId() === post._id) {
+            <div class="edit">
+              <input name="name" [(ngModel)]="draft.name" placeholder="Name" maxlength="300" />
+              <input name="description" [(ngModel)]="draft.description" placeholder="Description" maxlength="1000" />
+              <input name="age" type="number" [(ngModel)]="draft.age" placeholder="Age" min="1" max="150" />
+              @if (!isDraftValid()) {
+                <small class="hint">Name and description are required, and age must be between 1 and 150.</small>
+              }
+              <div class="actions">
+                <button (click)="saveEdit(post._id)" [disabled]="!isDraftValid()">Save</button>
+                <button class="ghost" (click)="cancelEdit()">Cancel</button>
+              </div>
+            </div>
+          } @else {
+            <div class="view">
+              <div>
+                <strong>{{ post.name }}</strong>
+                <span class="age">age {{ post.age }}</span>
+                <p class="desc">{{ post.description }}</p>
+              </div>
+              <div class="actions">
+                <button (click)="startEdit(post)">Edit</button>
+                <button class="danger" (click)="remove(post)">Delete</button>
+              </div>
+            </div>
+          }
+        </li>
+      }
+    </ul>
+  }
+</section>
